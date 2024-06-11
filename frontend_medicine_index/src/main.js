@@ -2,7 +2,10 @@ import 'vue3-toastify/dist/index.css'
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 import 'vue-loading-overlay/dist/css/index.css'
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
+
 import './assets/main.css'
+import { QuillEditor } from '@vueup/vue-quill'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -37,6 +40,7 @@ app.use(createPinia())
   })
 
 app.component('font-awesome-icon', FontAwesomeIcon)
+  .component('QuillEditor', QuillEditor)
 
 
 app.mount('#app')

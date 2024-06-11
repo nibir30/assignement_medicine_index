@@ -85,16 +85,32 @@ const menu = [
   },
   {
     title: 'Medicine',
-    icon: faIcon({ icon: 'fa-solid fa-list-ul' }),
+    icon: faIcon({ icon: 'fa-solid fa-capsules' }),
     child: [
       {
         href: '/medicine/all',
         title: 'All Medicines',
-        icon: faIcon({ icon: 'fa-solid fa-capsules', size: 'sm' })
+        icon: faIcon({ icon: 'fa-solid  fa-border-all', size: 'sm' })
       },
       {
         href: '/medicine/add',
         title: 'Add New Medicine',
+        icon: faIcon({ icon: 'fa-solid fa-plus', size: 'sm' })
+      }
+    ]
+  },
+  {
+    title: 'Manufacturer',
+    icon: faIcon({ icon: 'fa-solid fa-warehouse' }),
+    child: [
+      {
+        href: '/manufacturer/all',
+        title: 'All Manufacturers',
+        icon: faIcon({ icon: 'fa-solid fa-border-all', size: 'sm' })
+      },
+      {
+        href: '/manufacturer/add',
+        title: 'Add New Manufacturer',
         icon: faIcon({ icon: 'fa-solid fa-plus', size: 'sm' })
       }
     ]
@@ -112,7 +128,6 @@ html {
 body {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 18px;
-  background-color: #f2f4f7;
   color: #262626;
 }
 
