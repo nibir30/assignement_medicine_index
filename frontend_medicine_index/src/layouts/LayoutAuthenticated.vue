@@ -88,12 +88,12 @@ const menu = [
     icon: faIcon({ icon: 'fa-solid fa-list-ul' }),
     child: [
       {
-        href: '/page/sub-page-1',
+        href: '/medicine/all',
         title: 'All Medicines',
         icon: faIcon({ icon: 'fa-solid fa-capsules', size: 'sm' })
       },
       {
-        href: '/page/sub-page-2',
+        href: '/medicine/add',
         title: 'Add New Medicine',
         icon: faIcon({ icon: 'fa-solid fa-plus', size: 'sm' })
       }
