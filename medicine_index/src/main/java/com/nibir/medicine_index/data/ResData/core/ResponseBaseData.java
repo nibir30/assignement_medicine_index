@@ -11,16 +11,16 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class ResponseBaseData<T> {
-    @JsonProperty("isSuccess")
+    @JsonProperty("success")
     private Boolean success;
 
-    @JsonProperty("messageCode")
+    @JsonProperty("code")
     private Integer code;
 
     @JsonProperty("message")
     private String message;
 
-    @JsonProperty("developerMessage")
+    @JsonProperty("details")
     private String details;
 
     @JsonProperty("timestamp")

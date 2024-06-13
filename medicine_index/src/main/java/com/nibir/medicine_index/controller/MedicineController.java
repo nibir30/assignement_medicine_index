@@ -2,9 +2,10 @@ package com.nibir.medicine_index.controller;
 
 import com.nibir.medicine_index.controller.common.ApiUrlConstants;
 import com.nibir.medicine_index.controller.common.PublicApiUrlConstants;
-import com.nibir.medicine_index.model.MedicineModel;
+import com.nibir.medicine_index.data.ReqData.AddMedicineReqData;
 import com.nibir.medicine_index.service.MedicineService;
 import com.nibir.medicine_index.util.ResponseUtils;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class MedicineController {
 
     @RequestMapping(value = ApiUrlConstants.SAVE_MEDICINE, method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<?> saveMedicine(@RequestBody MedicineModel medicineModel) {
+    public ResponseEntity<?> saveMedicine(@RequestBody @Valid AddMedicineReqData medicineModel) {
         try {
             return medicineService.updateMedicine(medicineModel);
         } catch (Exception e) {

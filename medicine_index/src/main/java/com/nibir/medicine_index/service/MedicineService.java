@@ -1,6 +1,6 @@
 package com.nibir.medicine_index.service;
 
-import com.nibir.medicine_index.model.MedicineModel;
+import com.nibir.medicine_index.data.ReqData.AddMedicineReqData;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public interface MedicineService {
     ResponseEntity<?> getAllMedicine();
 
-    ResponseEntity<?> updateMedicine(MedicineModel manufactureModel);
+    ResponseEntity<?> updateMedicine(AddMedicineReqData manufactureModel);
 
     ResponseEntity<?> deleteMedicine(Long id);
 }
