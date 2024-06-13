@@ -55,11 +55,10 @@ public class InitialDevData implements ApplicationRunner {
             userRoleModels.add(roleModel.get());
             UserModel adminUser = UserModel.builder()
                     .id(24021514114563204L)
-                    .userId("test@admin.com")
-                    .email("test@admin.com")
+                    .userId("admin@test.com")
+                    .email("admin@test.com")
                     .firstName("Super")
                     .lastName("Admin")
-                    .bloodGroup("A+")
                     .insertTime(LocalDateTime.now())
                     .userStatus("Y")
                     .address("Dhaka")
@@ -70,17 +69,15 @@ public class InitialDevData implements ApplicationRunner {
                     .build();
             userRepository.save(adminUser);
 
-        } else if (userModels.size() == 1) {
             Optional<RoleModel> userRoleModel = roleRepository.findById(2L);
             List<RoleModel> userRoleModels2 = new ArrayList<RoleModel>();
             userRoleModels2.add(userRoleModel.get());
             UserModel publicUser = UserModel.builder()
                     .id(24021514114563205L)
-                    .userId("test@user.com")
-                    .email("test@user.com")
-                    .firstName("Alhaz")
-                    .lastName("Ahmed")
-                    .bloodGroup("A+")
+                    .userId("user@test.com")
+                    .email("user@test.com")
+                    .firstName("Nibir")
+                    .lastName("Rahman")
                     .insertTime(LocalDateTime.now())
                     .userStatus("Y")
                     .address("Dhaka")
@@ -90,6 +87,7 @@ public class InitialDevData implements ApplicationRunner {
                     .passwordExpiryDate(LocalDateTime.now().plusDays(1000))
                     .build();
             userRepository.save(publicUser);
+
         }
         List<LookupMediaType> lookupMediaTypes = lookupMediaTypeRepository.findAll();
         if (lookupMediaTypes.isEmpty()) {

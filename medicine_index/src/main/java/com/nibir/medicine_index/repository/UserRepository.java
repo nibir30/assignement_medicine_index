@@ -9,6 +9,4 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<UserModel, Long> {
     UserModel findByUserId(String userId);
-
-    List<UserModel> findByBloodGroup(String bloodGroup);
 }

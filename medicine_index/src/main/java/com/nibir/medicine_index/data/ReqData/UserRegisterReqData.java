@@ -19,8 +19,6 @@ public class UserRegisterReqData {
     private String password;
     private String email;
     private String phoneNo;
-    private String bloodGroup;
     private String address;
-    private String district;
     private List<Long> roleIds;
 }

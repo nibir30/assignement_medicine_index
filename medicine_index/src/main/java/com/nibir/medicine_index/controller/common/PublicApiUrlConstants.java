@@ -10,13 +10,6 @@ public class PublicApiUrlConstants {
     public final static String HELLO_WORLD = API_URI_PREFIX + "/hello";
     public final static String USERS = API_URI_PREFIX + "/users";
     public final static String GET_ALL_USERS = USERS;
-    public final static String GET_USERS_BY_BLOOD_GROUP = USERS + "/blood-group" + PATH_VAR_ID;
-    public final static String GET_USERS_FROM_ALL_BLOOD_GROUP = USERS + "/blood-group";
-    public final static String BLOOD_BANK = API_URI_PREFIX + "/blood-bank";
-
-    public final static String GET_ACTIVE_BLOOD_BANK = BLOOD_BANK + "/active";
-    public final static String DELETE_BLOOD_BANK = BLOOD_BANK + "/delete" + PATH_VAR_ID;
-    public final static String GET_ALL_BLOOD_BANK = BLOOD_BANK;
     public final static String SAVE_MEDIA = API_URI_PREFIX + "/save-media";
     public final static String MEDIA = API_URI_PREFIX + "/media" + PATH_VAR_ID;
 

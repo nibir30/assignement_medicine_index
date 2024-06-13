@@ -52,27 +52,6 @@ public class AuthController {
         }
     }
 
-    @RequestMapping(value = PublicApiUrlConstants.GET_USERS_BY_BLOOD_GROUP, method = RequestMethod.GET)
-    @ResponseBody
-    public ResponseEntity<?> getUsersByBloodGroup(@PathVariable("id") String bloodGroup) {
-        try {
-            return userService.getAllUserByBloodGroup(bloodGroup);
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            return ResponseUtils.exceptionError("Error getting users", e.getMessage());
-        }
-    }
-
-    @RequestMapping(value = PublicApiUrlConstants.GET_USERS_FROM_ALL_BLOOD_GROUP, method = RequestMethod.GET)
-    @ResponseBody
-    public ResponseEntity<?> getAllDonors() {
-        try {
-            return userService.getAllUserByBloodGroup(null);
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            return ResponseUtils.exceptionError("Error getting donors", e.getMessage());
-        }
-    }
 
     @RequestMapping(value = PublicApiUrlConstants.GET_ALL_USERS, method = RequestMethod.GET)
     @ResponseBody
@@ -85,16 +64,6 @@ public class AuthController {
         }
     }
 
-    //    @RequestMapping(value = PublicApiUrlConstants.LOGIN_USER, method = RequestMethod.POST)
-//    @ResponseBody
-//    public ResponseEntity<?> login(@RequestBody LoginReqData loginReqData) {
-//        try {
-//            return userService.login(loginReqData);
-//        } catch (Exception e) {
-//            log.error(e.getMessage());
-//            return ResponseUtils.exceptionError("Error Logging", e.getMessage());
-//        }
-//    }
     @RequestMapping(value = PublicApiUrlConstants.LOGIN_USER, method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<?> login(@RequestBody LoginReqData loginReqData) {

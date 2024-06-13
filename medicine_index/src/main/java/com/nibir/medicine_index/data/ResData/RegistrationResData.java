@@ -17,11 +17,10 @@ public class RegistrationResData {
     private String imageId;
     private String firstName;
     private String lastName;
+    private String fullName;
     private String email;
     private String phoneNo;
     private String address;
-    private String district;
     private String facebook;
-    private String bloodGroup;
     private List<String> roleNames;
 }

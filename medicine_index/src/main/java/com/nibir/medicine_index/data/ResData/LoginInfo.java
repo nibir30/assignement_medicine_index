@@ -18,7 +18,6 @@ public class LoginInfo {
     private String firstName;
     private String lastName;
     private String email;
-    private String bloodGroup;
     private String phoneNo;
     private List<String> roleNames;
 }

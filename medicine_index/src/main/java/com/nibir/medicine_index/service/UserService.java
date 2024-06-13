@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 public interface UserService {
     ResponseEntity<?> getAllUser();
 
-    ResponseEntity<?> getAllUserByBloodGroup(String bloodGroup);
-
     ResponseEntity<?> saveUser(UserRegisterReqData userRegisterReqData);
 
     ResponseEntity<?> findUserByEmail(String email);
@@ -20,5 +18,4 @@ public interface UserService {
 
     ResponseEntity<?> login(LoginReqData loginReqData);
 
-    ResponseEntity<?> adminLogin(LoginReqData loginReqData);
 }

@@ -20,25 +20,25 @@ import java.util.List;
 @Entity(name = "User")
 public class UserModel {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long imageId;
     private String userId;
     private String firstName;
     private String lastName;
+    private String fullName;
     @JsonIgnore
     private String password;
     private String userStatus;
     private LocalDateTime passwordExpiryDate;
+
+    private String email;
+    private String phoneNo;
+    private String address;
+    @ManyToMany(targetEntity = RoleModel.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
+    private List<RoleModel> roleModels;
+
     @JsonIgnore
     private LocalDateTime insertTime;
     @JsonIgnore
     private LocalDateTime updateTime;
-    private String email;
-    private String phoneNo;
-    private String address;
-    private String district;
-    private String bloodGroup;
-    @ManyToMany(targetEntity = RoleModel.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
-    private List<RoleModel> roleModels;
 }
