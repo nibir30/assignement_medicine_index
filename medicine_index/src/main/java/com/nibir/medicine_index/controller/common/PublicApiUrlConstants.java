@@ -13,6 +13,12 @@ public class PublicApiUrlConstants {
     public final static String SAVE_MEDIA = API_URI_PREFIX + "/save-media";
     public final static String MEDIA = API_URI_PREFIX + "/media" + PATH_VAR_ID;
 
+    public final static String MEDICINE = API_URI_PREFIX + "/medicine";
+    public final static String GET_MEDICINE = MEDICINE + "/get-all";
+
+    public final static String MANUFACTURER = API_URI_PREFIX + "/manufacturer";
+    public final static String GET_MANUFACTURER = MANUFACTURER + "/get-all";
+
 
 //    public static final String GET_NAVBAR_MENUS = API_URI_PREFIX + NAVBAR + "/getAllNavbarMenus" + PATH_VAR_ID;
 
