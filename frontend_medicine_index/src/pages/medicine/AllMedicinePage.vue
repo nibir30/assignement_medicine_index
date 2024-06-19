@@ -122,7 +122,7 @@ function perPageUpdate(data) {
 }
 
 const medicineParams = ref({
-  perPage: 1,
+  perPage: 5,
   currentPage: 0,
   sortBy: null,
   sortType: null,

@@ -57,15 +57,18 @@ public class MediaFileController {
                 } else if (fileType.equalsIgnoreCase("doc")) {
                     return ResponseEntity.ok().contentType(MediaType.valueOf("application/msword")).body(byteData);
                 } else if (fileType.equalsIgnoreCase("docx")) {
-                    return ResponseEntity.ok().contentType(MediaType.valueOf("application/vnd.openxmlformats-officedocument.wordprocessingml.document")).body(byteData);
+                    return ResponseEntity.ok().contentType(MediaType.valueOf("application/vnd.openxmlformats-" +
+                            "officedocument.wordprocessingml.document")).body(byteData);
                 } else if (fileType.equalsIgnoreCase("xls")) {
                     return ResponseEntity.ok().contentType(MediaType.valueOf("application/vnd.ms-excel")).body(byteData);
                 } else if (fileType.equalsIgnoreCase("xlsx")) {
-                    return ResponseEntity.ok().contentType(MediaType.valueOf("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")).body(byteData);
+                    return ResponseEntity.ok().contentType(MediaType.valueOf("application/vnd.openxmlformats-" +
+                            "officedocument.spreadsheetml.sheet")).body(byteData);
                 } else if (fileType.equalsIgnoreCase("ppt")) {
                     return ResponseEntity.ok().contentType(MediaType.valueOf("application/vnd.ms-powerpoint")).body(byteData);
                 } else if (fileType.equalsIgnoreCase("pptx")) {
-                    return ResponseEntity.ok().contentType(MediaType.valueOf("application/vnd.openxmlformats-officedocument.presentationml.presentation")).body(byteData);
+                    return ResponseEntity.ok().contentType(MediaType.valueOf("application/vnd.openxmlformats-" +
+                            "officedocument.presentationml.presentation")).body(byteData);
                 } else if (fileType.equalsIgnoreCase("txt")) {
                     return ResponseEntity.ok().contentType(MediaType.valueOf("text/plain")).body(byteData);
                 } else {
