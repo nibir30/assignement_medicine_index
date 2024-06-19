@@ -76,7 +76,7 @@ axios.interceptors.request.use(
         }
       })
       if (addHeader) {
-        config.headers.Authorization = `Bearer ${userData.token.token}`
+        config.headers.Authorization = `Bearer ${userData.tokenInfo.token}`
       }
     } else {
       /*config.headers.Authorization = `Bearer ${tokenData}`*/

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class AddMedicineReqData {
-    private Long medicineId;
+    private Long id;
 
     @NotBlank(message = "Name must not be empty")
     private String name;
@@ -28,5 +28,6 @@ public class AddMedicineReqData {
     private String otherDetails;
 
     private Long manufacturerId;
+    private String manufacturer;
 
 }

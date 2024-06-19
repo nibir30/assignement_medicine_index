@@ -1,16 +1,23 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomePage from '@/pages/HomePage.vue'
+import AdminHomePage from '@/pages/AdminHomePage.vue'
 import AddMedicinePage from '@/pages/medicine/AddMedicinePage.vue'
 import AllMedicinePage from '@/pages/medicine/AllMedicinePage.vue'
 import LayoutAuthenticatedComponent from '@/layouts/LayoutAuthenticatedComponent.vue'
 import AddManufacturerPage from '@/pages/manufacturer/AddManufacturerPage.vue'
 import AllManufacturerPage from '@/pages/manufacturer/AllManufacturerPage.vue'
+import LoginPage from '@/pages/LoginPage.vue'
+import HomePage from '@/pages/user/HomePage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
+      name: 'userHome',
+      component: HomePage
+    },
+    {
+      path: '/admin',
       name: 'home',
       component: LayoutAuthenticatedComponent,
       children: [
@@ -18,9 +25,14 @@ const router = createRouter({
           title: 'Dashboard',
           path: '',
           name: 'Dashboard',
-          component: HomePage
+          component: AdminHomePage
         }
       ]
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginPage
     },
     {
       meta: {

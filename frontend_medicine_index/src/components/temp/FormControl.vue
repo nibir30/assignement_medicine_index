@@ -1,6 +1,5 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import { useMainStore } from '@/stores/main'
 import FormControlIcon from '@/components/temp/FormControlIcon.vue'
 
 const props = defineProps({
@@ -85,8 +84,6 @@ const inputElClass = computed(() => {
 const computedType = computed(() => (props.options ? 'select' : props.type))
 
 const controlIconH = computed(() => (props.type === 'textarea' ? 'h-full' : 'h-12'))
-
-const mainStore = useMainStore()
 
 const selectEl = ref(null)
 
