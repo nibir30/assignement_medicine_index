@@ -1,0 +1,37 @@
+version: '3'
+
+networks:
+  springboot-mysql-net:
+    external: true
+
+
+volumes:
+  medicine_index_storage:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/root/storage/medicine_index'
+
+services:
+  medicine_index_container:
+    image: nibir30/medicine_index
+    build: .
+    restart: always
+    container_name: medicine_index
+    ports:
+      - "8055:8055"
+    networks:
+      - springboot-mysql-net
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/medicine_index
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 13579
+  #    volumes:
+  #      - tangail_backend_storage:/src/images
+  db:
+    image: mysql:8.0.34
+    environment:
+      MYSQL_ROOT_PASSWORD: 13579
+      MYSQL_DATABASE: medicine_index
+      MYSQL_USER: root

@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  medicine_index_frontend_web_container:
+    image: nibir30/medicine_index_frontend
+    build: .
+    restart: always
+    container_name: medicine_index_frontend_web_container
+    ports:
+      - "3100:8080"
