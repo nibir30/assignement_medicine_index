@@ -53,4 +53,3 @@ Swagger Link: http://199.241.138.46:8055/medicine-backend/swagger-ui/index.html
 10. Now access to the app at http://localhost:5050
 
 11. Access admin panel at http://localhost:5050/login
-12. Use user - 'admin@test.com' and pssword - '123456' for admin access
