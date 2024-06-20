@@ -31,15 +31,15 @@
               type="email"
             />
           </FormField>
-          <FormField :bold="false" autocomplete="off" is-required label="Description">
-            <FormControl
-              v-model.trim="form.description"
-              autocomplete="off"
-              placeholder="Enter description"
-              required
-              type="email"
-            />
-          </FormField>
+          <!--          <FormField :bold="false" autocomplete="off" is-required label="Description">-->
+          <!--            <FormControl-->
+          <!--              v-model.trim="form.description"-->
+          <!--              autocomplete="off"-->
+          <!--              placeholder="Enter description"-->
+          <!--              required-->
+          <!--              type="email"-->
+          <!--            />-->
+          <!--          </FormField>-->
           <FormField :bold="false" autocomplete="off" is-required label="Price">
             <FormControl
               v-model.trim="form.price"

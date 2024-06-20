@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="text-xl font-medium font-Outfit">
+  <div class="text-2xl font-bold font-Outfit">
     <slot />
   </div>
 </template>

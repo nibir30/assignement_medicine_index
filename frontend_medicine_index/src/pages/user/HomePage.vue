@@ -87,7 +87,10 @@ async function fetchMedicines() {
         Medicines
       </div>
       <div v-else class="mt-8 text-3xl font-bold">Searched Medicines</div>
-      <div v-if="medicineList.length === 0 && !firstTimeLoading" class="mt-2 text-red-500">
+      <div v-if="medicineList.length === 0 && medicineParams.search == null" class="mt-2 text-red-500">
+        Sorry, currently there are no medicine history available in our application
+      </div>
+      <div v-else-if="medicineList.length === 0 && !firstTimeLoading" class="mt-2 text-red-500">
         Sorry, no medicine found searching for '{{ medicineParams.search }}'
       </div>
       <div class="mt-4 mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">

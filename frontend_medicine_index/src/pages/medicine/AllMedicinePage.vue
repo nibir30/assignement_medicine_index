@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="font-bold text-3xl mb-5">All Medicines</div>
+    <PageHeader class="mb-6">ALL MEDICINES</PageHeader>
     <div class="rounded-2xl border pt-2 pb-4">
       <div class="m-3 flex flex-row">
         <Select v-model="perPageTerm" @change="perPageUpdate">
@@ -29,7 +29,7 @@
           <TableRow>
             <TableHead>Name</TableHead>
             <TableHead>Generic Name</TableHead>
-            <TableHead>price</TableHead>
+            <TableHead>Price</TableHead>
             <TableHead>Batch No.</TableHead>
             <TableHead>Manufacturer</TableHead>
             <TableHead>Actions</TableHead>
@@ -39,7 +39,7 @@
           <TableRow v-for="medicineInfo in medicineList" :key="medicineInfo.medicineId">
             <TableCell>{{ medicineInfo.name }}</TableCell>
             <TableCell>{{ medicineInfo.genericName }}</TableCell>
-            <TableCell>{{ medicineInfo.price }}</TableCell>
+            <TableCell>{{ medicineInfo.price }} BDT</TableCell>
             <TableCell>{{ medicineInfo.batchNo }}</TableCell>
             <TableCell>{{ medicineInfo.manufacturer }}</TableCell>
             <TableCell>
@@ -120,6 +120,7 @@ import FormControl from '@/components/temp/FormControl.vue'
 import FormField from '@/components/temp/FormField.vue'
 import { toast } from 'vue3-toastify'
 import Swal from 'sweetalert2'
+import PageHeader from '@/components/temp/PageHeader.vue'
 
 onBeforeMount(async () => {
   await fetchMedicines()
