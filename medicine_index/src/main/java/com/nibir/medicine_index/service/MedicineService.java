@@ -9,6 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 public interface MedicineService {
     ResponseEntity<?> getAllMedicine();
 
+    ResponseEntity<?> getSingleMedicine(Long medicineId);
+
     ResponseEntity<?> getPaginatedMedicine(int pageNo, int size, String sortBy, String sortType, String search);
 
     ResponseEntity<?> updateMedicine(MultipartFile medicine_image, AddMedicineReqData manufactureModel);

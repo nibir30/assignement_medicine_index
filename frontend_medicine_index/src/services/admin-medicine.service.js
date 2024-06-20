@@ -18,6 +18,18 @@ class AdminMedicineService {
     const resData = response.data
     return resData
   }
+
+  async getSingleMedicine(id) {
+    const response = await axios.get(this.url + '/public/medicine/' + id)
+    const resData = response.data
+    return resData
+  }
+
+  async deleteSingleMedicine(id) {
+    const response = await axios.get(this.url + '/medicine/delete/' + id)
+    const resData = response.data
+    return resData
+  }
 }
 
 export default new AdminMedicineService()

@@ -47,6 +47,25 @@ public class MedicineServiceImpl implements MedicineService {
     }
 
     @Override
+    public ResponseEntity<?> getSingleMedicine(Long medicineId) {
+        try {
+            if (medicineId == null) {
+                return ResponseUtils.validationError("Invalid medicine!");
+            }
+            Optional<MedicineModel> medicineModel1 = medicineRepository.findById(medicineId);
+            if (medicineModel1.isPresent()) {
+                return ResponseUtils.dataSuccess("Successfully found medicine", medicineModel1.get());
+            } else {
+                return ResponseUtils.validationError("Could not found medicine!");
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return ResponseUtils.exceptionError("Could not found medicine!", e.getMessage());
+        }
+    }
+
+
+    @Override
     public ResponseEntity<?> getPaginatedMedicine(int pageNo, int size, String sortBy, String sortType, String search) {
         try {
             List<MedicineModel> medicines = new ArrayList<MedicineModel>();
@@ -92,6 +111,18 @@ public class MedicineServiceImpl implements MedicineService {
     public ResponseEntity<?> updateMedicine(MultipartFile medicine_image, AddMedicineReqData addMedicineReqData) {
         try {
             MedicineModel medicineModel = new MedicineModel();
+
+            if (addMedicineReqData.getId() != null) {
+                Optional<MedicineModel> medicineModel1 = medicineRepository.findById(addMedicineReqData.getId());
+                if (medicineModel1.isEmpty()) {
+                    return ResponseUtils.validationError("Medicine not found");
+                } else {
+                    medicineModel = medicineModel1.get();
+                }
+            } else {
+                medicineModel.setInsertTime(LocalDateTime.now());
+                medicineModel.setMedicineId(IdGenerator.generateId());
+            }
             if (medicine_image != null) {
                 ResponseEntity<?> mediaResponse = mediaFileService.saveMedia(medicine_image);
                 Object responseBaseData = mediaResponse.getBody();
@@ -105,17 +136,6 @@ public class MedicineServiceImpl implements MedicineService {
                         }
                     }
                 }
-            }
-            if (addMedicineReqData.getId() != null) {
-                Optional<MedicineModel> medicineModel1 = medicineRepository.findById(addMedicineReqData.getId());
-                if (medicineModel1.isEmpty()) {
-                    return ResponseUtils.validationError("Medicine not found");
-                } else {
-                    medicineModel = medicineModel1.get();
-                }
-            } else {
-                medicineModel.setInsertTime(LocalDateTime.now());
-                medicineModel.setMedicineId(IdGenerator.generateId());
             }
 //            if (addMedicineReqData.getManufacturerId() != null) {
 //                Optional<ManufactureModel> manufactureModel = manufactureRepository.findById(addMedicineReqData.getManufacturerId());
@@ -138,7 +158,13 @@ public class MedicineServiceImpl implements MedicineService {
 
     @Override
     public ResponseEntity<?> deleteMedicine(Long id) {
-        return null;
+        try {
+            medicineRepository.deleteById(id);
+            return ResponseUtils.success("Successfully deleted medicine");
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return ResponseUtils.exceptionError("Error deleting medicine", e.getMessage());
+        }
     }
 
 }

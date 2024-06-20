@@ -31,15 +31,7 @@
               type="email"
             />
           </FormField>
-          <FormField :bold="false" autocomplete="off" is-required label="Description">
-            <FormControl
-              v-model.trim="form.description"
-              autocomplete="off"
-              placeholder="Enter description"
-              required
-              type="email"
-            />
-          </FormField>
+
           <FormField :bold="false" autocomplete="off" is-required label="Price">
             <FormControl
               v-model.trim="form.price"
@@ -65,7 +57,7 @@
         </div>
         <div class="flex flex-row mt-4 gap-x-2">
           <Button @click="submit">Add Medicine</Button>
-          <Button class="bg-red-500 hover:bg-red-800" @click="clearForm">Cancel</Button>
+          <Button class="bg-red-500 hover:bg-red-800">Cancel</Button>
         </div>
       </div>
       <div class="col-span-1 order-first sm:order-last">
@@ -73,6 +65,8 @@
           <Label for="picture">Picture</Label>
           <div class="aspect-video rounded-2xl border w-full p-3">
             <img v-if="medicineImage" :src="medicineImage" class="rounded-2xl object-contain" />
+            <img v-else-if="medicineInfo.imageId" :src="baseUrl + '/public/media/' + medicineInfo.imageId"
+                 class="rounded-2xl object-contain" />
             <img v-else class="rounded-2xl object-contain" src="/src/assets/images/upload.jpg" />
           </div>
           <Input id="picture" type="file" v-on:change="uploadFile" />
@@ -88,13 +82,43 @@ import PageHeader from '@/components/temp/PageHeader.vue'
 import FormControl from '@/components/temp/FormControl.vue'
 import FormField from '@/components/temp/FormField.vue'
 import EditorVueQuillComponent from '@/components/RichtextEditor/EditorVueQuillComponent.vue'
-import { reactive, ref } from 'vue'
+import { onBeforeMount, reactive, ref } from 'vue'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import AdminMedicineService from '@/services/admin-medicine.service.js'
 import { toast } from 'vue3-toastify'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+
+let medicineId = null
+
+async function fetchMedicine() {
+  const response = await AdminMedicineService.getSingleMedicine(medicineId)
+  console.log('response', response)
+  if (response.success === true) {
+    medicineInfo.value = response.data
+    form.name = response.data.name
+    form.genericName = response.data.genericName
+    form.manufacturer = response.data.manufacturer
+    form.description = response.data.description
+    form.price = response.data.price
+    form.batchNo = response.data.batchNo
+    otherDetails.value = response.data.otherDetails
+  }
+}
+
+let baseUrl = null
+
+onBeforeMount(async () => {
+  baseUrl = import.meta.env.VITE_API_URL
+  console.log('route', route)
+  medicineId = route.query.id
+  await fetchMedicine()
+})
 
 const otherDetails = ref('')
+const medicineInfo = ref({})
 const form = reactive({
   name: '',
   genericName: '',
@@ -135,7 +159,7 @@ function getDetailsHtml(data) {
 
 async function submit() {
   let payload = {
-    medicine_image: imageFileName.value,
+    id: medicineInfo.value.medicineId,
     name: form.name,
     genericName: form.genericName,
     manufacturer: form.manufacturer,
@@ -144,7 +168,9 @@ async function submit() {
     batchNo: form.batchNo,
     otherDetails: otherDetails.value
   }
-  console.log('payload', payload)
+  if (imageFileName.value) {
+    payload.medicine_image = imageFileName.value
+  }
   const response = await AdminMedicineService.saveMedicine(payload)
   console.log('save response', response)
   if (response.success === true) {

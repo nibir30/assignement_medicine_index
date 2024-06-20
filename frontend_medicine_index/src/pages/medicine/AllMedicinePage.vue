@@ -32,6 +32,7 @@
             <TableHead>price</TableHead>
             <TableHead>Batch No.</TableHead>
             <TableHead>Manufacturer</TableHead>
+            <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -41,6 +42,17 @@
             <TableCell>{{ medicineInfo.price }}</TableCell>
             <TableCell>{{ medicineInfo.batchNo }}</TableCell>
             <TableCell>{{ medicineInfo.manufacturer }}</TableCell>
+            <TableCell>
+              <router-link :to="{
+                 path: '/medicine/edit',
+                 params: medicineInfo.medicineId, // <-- changed 'props' to 'params'
+                 query: { id: medicineInfo.medicineId },
+               }">
+                <Button class="me-2 bg-blue-600"><i class="fa-regular fa-pen-to-square"></i></Button>
+              </router-link>
+              <Button class="bg-red-500" @click="deleteMedicine(medicineInfo.medicineId)"><i
+                class="fa-solid fa-trash"></i></Button>
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>
@@ -106,6 +118,8 @@ import { onBeforeMount, ref, watch } from 'vue'
 import AdminMedicineService from '@/services/admin-medicine.service.js'
 import FormControl from '@/components/temp/FormControl.vue'
 import FormField from '@/components/temp/FormField.vue'
+import { toast } from 'vue3-toastify'
+import Swal from 'sweetalert2'
 
 onBeforeMount(async () => {
   await fetchMedicines()
@@ -134,11 +148,12 @@ const perPageOptions = [1, 5, 10, 100]
 const medicineList = ref([])
 const totalMedicinePages = ref(null)
 const searchTerm = ref(null)
-const perPageTerm = ref(1)
+const perPageTerm = ref(5)
 
 watch(perPageTerm, (newTerm, oldTerm) => {
   if (newTerm !== oldTerm) {
     medicineParams.value.perPage = newTerm
+    medicineParams.value.currentPage = 0
     fetchMedicines()
   }
 })
@@ -160,9 +175,31 @@ watch(searchTerm, (newTerm, oldTerm) => {
 async function fetchMedicines() {
   const response = await AdminMedicineService.getMedicinePaginated(medicineParams.value)
   if (response.success === true) {
-    totalMedicinePages.value = response.data.data.totalPages
+    totalMedicinePages.value = response.data.data.totalItems
     medicineList.value = response.data.data.listResponse
   }
+}
+
+async function deleteMedicine(id) {
+  const result = await Swal.fire({
+    title: 'Are you sure?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes!'
+  })
+  if (result.isConfirmed) {
+    const response = await AdminMedicineService.deleteSingleMedicine(id)
+    if (response.success === true) {
+      toast.success(response.message, {
+        autoClose: 2500,
+        theme: 'dark'
+      })
+      await fetchMedicines()
+    }
+  }
+
 }
 </script>
 

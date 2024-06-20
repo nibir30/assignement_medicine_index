@@ -45,6 +45,17 @@ public class MedicineController {
         }
     }
 
+    @RequestMapping(value = PublicApiUrlConstants.GET_SINGLE_MEDICINE, method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<?> getSingleMedicine(@PathVariable("id") Long medicineId) {
+        try {
+            return medicineService.getSingleMedicine(medicineId);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return ResponseUtils.exceptionError("Error getting medicine", e.getMessage());
+        }
+    }
+
     @RequestMapping(value = PublicApiUrlConstants.GET_PAGINATED_MEDICINE, method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> getPaginatedMedicine(@RequestParam(value = "perPage", required = false, defaultValue = "10") int size,

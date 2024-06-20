@@ -72,7 +72,7 @@ const menu = [
     hiddenOnCollapse: true
   },
   {
-    href: '/',
+    href: '/admin',
     title: 'Dashboard',
     icon: faIcon({ icon: 'fa-solid fa-chart-line' })
   },
@@ -100,20 +100,9 @@ const menu = [
     ]
   },
   {
-    title: 'Manufacturer',
-    icon: faIcon({ icon: 'fa-solid fa-warehouse' }),
-    child: [
-      {
-        href: '/manufacturer/all',
-        title: 'All Manufacturers',
-        icon: faIcon({ icon: 'fa-solid fa-border-all', size: 'sm' })
-      },
-      {
-        href: '/manufacturer/add',
-        title: 'Add New Manufacturer',
-        icon: faIcon({ icon: 'fa-solid fa-plus', size: 'sm' })
-      }
-    ]
+    href: '/logout',
+    title: 'Logout',
+    icon: faIcon({ icon: 'fa-solid fa-right-from-bracket' })
   }
 ]
 </script>

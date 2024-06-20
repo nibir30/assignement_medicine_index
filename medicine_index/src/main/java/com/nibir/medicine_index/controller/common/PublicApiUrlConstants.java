@@ -15,6 +15,7 @@ public class PublicApiUrlConstants {
 
     public final static String MEDICINE = API_URI_PREFIX + "/medicine";
     public final static String GET_MEDICINE = MEDICINE + "/get-all";
+    public final static String GET_SINGLE_MEDICINE = MEDICINE + PATH_VAR_ID;
     public final static String GET_PAGINATED_MEDICINE = MEDICINE + "/get-paginated";
 
     public final static String MANUFACTURER = API_URI_PREFIX + "/manufacturer";

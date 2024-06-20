@@ -92,6 +92,10 @@ axios.interceptors.request.use(
 // show error message on api response
 axios.interceptors.response.use(
   (config) => {
+    if (config.status === 401) {
+      localStorage.clear()
+      router.push('/login')
+    }
     loaderStore.setShowLoader(false)
     if (config.data.status === false) {
 
